@@ -50,4 +50,48 @@ export const SelectNoOfPersons = [
     },
 ]
 
-export const PROMPT = "Create an optimal trip itinerary based on the specified location, duration, budget, and number of persons. Generate Travel Plan for Location: {location} for no of days: {noOfDays} Days with no of People or group: {People} with Budget: {Budget}; give me list of hotels with hotel name, description, address, rating, price, location in map, coordinates, image url; also for the same create the itinerary for {noOfDays} days, suggest places, give name, details, pricing, timings, place images urls, location (coordinate or in map); Remember all have to cover in the {Budget} level budget. Important: give the result in JSON Format"
+// export const PROMPT = `Generate a travel itinerary for {location} for {noOfDays} days.
+// Include hotels, places, and daily plans.
+
+// Return ONLY valid JSON.
+// Do not include explanations, markdown, or extra text.
+// The response must start with { and end with }`
+
+export const PROMPT = `Generate a travel itinerary for {location} for {noOfDays} days.
+Include hotels, places, and daily plans.
+
+Return ONLY valid JSON.
+Do not include explanations, markdown, or extra text.
+
+The JSON MUST follow this exact structure:
+
+{
+  "itinerary": [
+    {
+      "day": 1,
+      "hotels": [
+        {
+          "name": "",
+          "address": "",
+          "rating": ""
+        }
+      ],
+      "places": [
+        {
+          "name": "",
+          "address": "",
+          "description": ""
+        }
+      ]
+    }
+  ]
+}
+
+Rules:
+- "itinerary" MUST be an array.
+- Each day MUST be one object inside the array.
+- "hotels" MUST be an array.
+- "places" MUST be an array.
+- Do NOT use keys like "Day 1", "Day 2".
+- The response must start with { and end with }.
+`;

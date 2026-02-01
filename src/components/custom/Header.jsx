@@ -50,7 +50,7 @@ function Header({ headerRef }) {
             <img src="/logo.png" alt="" />
           </div>
           <h1 className="text-lg md:text-3xl font-bold bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent">
-            JourneyJolt
+            VoyageValt
           </h1>
         </div>
       </Link>

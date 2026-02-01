@@ -34,13 +34,35 @@ function HotelCards({ hotel }) {
   const hotels = trip?.tripData?.hotels;
 
   const getPlaceInfo = async () => {
+    if (!hotel?.name || !city) return;
+
     const data = {
-      textQuery: hotel.name + city,
-    };
+  textQuery: `${hotel.name}`,
+  locationBias: {
+    circle: {
+      center: {
+        latitude: latitude || 11.4064,   // fallback: Ooty lat
+        longitude: longitude || 76.6932, // fallback: Ooty lng
+      },
+      radius: 50000,
+    },
+  },
+};
+
+
+    
 
     try {
       const result = await getPlaceDetails(data);
+
       const place = result?.data?.places[0];
+
+         if (!place) {
+  console.warn("No place found for hotel:", hotel.name);
+  return;
+}
+
+
       let info = {
         id: place.id,
         lat: place.location.latitude,
@@ -76,10 +98,12 @@ function HotelCards({ hotel }) {
     return PHOTO_URL.replace("{replace}", name);
   };
 
-  useEffect(() => {
-    const url = PHOTO_URL.replace("{replace}", photos);
-    setUrl(url);
-  }, [photos]);
+ useEffect(() => {
+  if (!photos) return;
+  const url = PHOTO_URL.replace("{replace}", photos);
+  setUrl(url);
+}, [photos]);
+
 
   const containerStyle = {
     width: "100%",

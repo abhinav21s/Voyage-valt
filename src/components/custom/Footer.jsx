@@ -43,7 +43,7 @@ function Footer({ footerRef }) {
       className="footer w-full flex flex-col text-muted-foreground items-center justify-center md:p-4 py-2 border-t"
     >
       <p className="sm:font-semibold sm:text-lg  bg-gradient-to-b from-primary/90 to-primary/60 bg-clip-text text-transparent">
-        JourneyJolt &copy; 2025
+        VoyageValt &copy; 2025
       </p>
       {/* <p className="sm:font-semibold sm:text-lg  bg-gradient-to-b from-primary/90 to-primary/60 bg-clip-text text-transparent">
         Made by Satendra Kumar Parteti

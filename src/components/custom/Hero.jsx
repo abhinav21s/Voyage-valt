@@ -137,7 +137,7 @@ function Hero({ heroRef }) {
             Embark on Electrifying <br /> Adventures with
           </h1>
           <h1 className="font-black text-5xl md:text-9xl bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-center text-transparent pb-4">
-            JourneyJolt
+            VoyageValt
           </h1>
         </div>
         <div className="desc">

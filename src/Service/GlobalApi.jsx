@@ -2,36 +2,56 @@ import axios from "axios";
 
 const BASE_URL = "https://places.googleapis.com/v1/places:searchText";
 
+// const configPlace = {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "X-Goog-Api-Key": import.meta.env.VITE_GOOGLE_MAP_API_KEY,
+//     "X-Goog-FieldMask": [
+//       "places.id",
+//       "places.name",
+//       "places.displayName",
+//       "places.formattedAddress",
+//       "places.photos",
+//       "places.googleMapsUri",
+//       "places.location",
+//       "places.priceLevel",
+//       "places.rating",
+//     ],
+//   },
+// };
+
 const configPlace = {
   headers: {
     "Content-Type": "application/json",
     "X-Goog-Api-Key": import.meta.env.VITE_GOOGLE_MAP_API_KEY,
-    "X-Goog-FieldMask": [
-      "places.id",
-      "places.name",
-      "places.displayName",
-      "places.formattedAddress",
-      "places.photos",
-      "places.googleMapsUri",
-      "places.location",
-      "places.priceLevel",
-      "places.rating",
-    ],
+    "X-Goog-FieldMask":
+     "places.id,places.displayName,places.formattedAddress,places.photos,places.googleMapsUri,places.location,places.priceLevel,places.rating"
   },
 };
+
+// const configCity = {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "X-Goog-Api-Key": import.meta.env.VITE_GOOGLE_MAP_API_KEY,
+//     "X-Goog-FieldMask": [
+//       "places.name",
+//       "places.displayName",
+//       "places.photos",
+//       "places.googleMapsUri",
+//       "places.location",
+//     ],
+//   },
+// };
+
 const configCity = {
   headers: {
     "Content-Type": "application/json",
     "X-Goog-Api-Key": import.meta.env.VITE_GOOGLE_MAP_API_KEY,
-    "X-Goog-FieldMask": [
-      "places.name",
-      "places.displayName",
-      "places.photos",
-      "places.googleMapsUri",
-      "places.location",
-    ],
+    "X-Goog-FieldMask":
+      "places.displayName,places.photos,places.googleMapsUri,places.location",
   },
 };
+
 
 export const PHOTO_URL =
   "https://places.googleapis.com/v1/{replace}/media?maxHeightPx=1000&key=" +

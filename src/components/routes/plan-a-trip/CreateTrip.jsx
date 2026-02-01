@@ -27,6 +27,7 @@ import { db } from "@/Service/Firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import ReactGoogleAutocomplete from "react-google-autocomplete";
+import { Data } from "@react-google-maps/api";
 
 function CreateTrip({createTripPageRef}) {
   const [place, setPlace] = useState("");
@@ -132,8 +133,37 @@ function CreateTrip({createTripPageRef}) {
       });
 
       setIsLoading(true);
+      /* without backend
       const result = await chatSession.sendMessage(FINAL_PROMPT);
       const trip = JSON.parse(result.response.text());
+      SaveTrip(trip)*/
+
+      const response = await fetch("http://localhost:5000/api/generate-trip", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    prompt: FINAL_PROMPT, // same prompt you were sending to Gemini earlier
+  }),
+});
+
+const data = await response.json();
+if (!data.result) {
+  console.error("AI returned empty result:", data);
+  setIsLoading(false);
+  return;
+}
+
+let trip;
+try {
+  trip = JSON.parse(data.result);
+} catch (e) {
+  console.error("Invalid JSON from AI:", data.result);
+  return;
+}
+
+console.log(trip)
       setIsLoading(false);
       SaveTrip(trip);
 
@@ -160,7 +190,7 @@ function CreateTrip({createTripPageRef}) {
         <p className="opacity-90 mx-auto text-center text-md md:text-xl font-medium tracking-tight text-primary/80">
           Embark on your dream adventure with just a few simple details. <br />
           <span className="bg-gradient-to-b text-2xl from-blue-400 to-blue-700 bg-clip-text text-center text-transparent">
-            JourneyJolt
+            VoyageValt
           </span>{" "}
           <br /> will curate a personalized itinerary, crafted to match your
           unique preferences!
