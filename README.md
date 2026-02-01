@@ -48,5 +48,11 @@
 - Firebase Firestore
 
 ---
+---
+
+## Note
+
+This project extends an initial base implementation and was enhanced with additional backend features such as route planning, weather insights, nearby places, and travel options.
+
 
 
